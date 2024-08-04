@@ -1,0 +1,20 @@
+import hashlib
+
+def sha256(message):
+    """Returns the SHA-256 hash of the input message."""
+    return hashlib.sha256(message.encode("ascii")).hexdigest()
+
+def mine(message, difficulty=1):
+    """Finds a nonce that, when hashed with the message, results in a hash with a specific number of leading zeros."""
+    prefix = "0" * difficulty  # Changed from "1" to "0" to match mining difficulty
+    for i in range(1000):
+        digest = sha256(str(hash(message)) + str(i))
+        if digest.startswith(prefix):
+            print(f"After {i} iterations found nonce: {i}")
+            print(f"Hash: {digest}")  # Added to show the hash result
+            return i  # Return the nonce
+    print("No valid nonce found.")
+    return None  # Return None if no valid nonce is found
+
+# Example usage
+mine("test message", 2)
