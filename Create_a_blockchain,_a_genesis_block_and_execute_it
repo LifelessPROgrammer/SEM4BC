@@ -95,3 +95,5 @@ def dump_blockchain(self):
         print("-" * 20)
     print("=" * 30)
 
+TPCoins = [block0]
+dump_blockchain(TPCoins)
